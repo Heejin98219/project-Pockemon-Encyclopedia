@@ -1,13 +1,15 @@
-import { Routes } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
+import Dex from "./pages/Dex";
 
 const App = () => {
   return (
-    <router>
+    <BrowserRouter>
       <Routes>
-        <route path="/" element={<Home />} />
+        <Route path="/" element={<Home />} />
+        <Route path="/dex" element={<Dex />} />
       </Routes>
-    </router>
+    </BrowserRouter>
   );
 };
 
