@@ -1,37 +1,45 @@
+import styled from "styled-components";
+import Dashboard from "../components/DashBoard";
+import PockemonList from "../components/PockemonList";
 import { useState } from "react";
 import MOCK_DATA from "../mock";
 
-const Dex = () => {
-  const [pockemonData, setPockemonData] = useState(MOCK_DATA);
-  const [selectedPokemon, setSelectedPockemon] = useState("");
+const DexContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+`;
 
-  const addPokemon = (pokemon) => {
-    // 포켓몬을 선택하는 로직을 완성해봅시다
+export default function Dex() {
+  // selectedPockemon 관리
+  // 빈배열로 설정하는 이유
+  // 1. 처음에는 어떤 포켓몬도 선택이 안 될거기 때문
+  // 2. 하나씩 누를 때마다 선택할 것이기 때문
+  const [selectedPockemon, setSelectedPockemon] = useState([]);
+
+  const addPockemon = (pockemon) => {
+    console.log(pockemon);
+    // selectedPockemon에
+    // pockemon이 포함되어 있다면
+    if (selectedPockemon.includes(pockemon)) {
+      alert("이미 선택된 포켓몬입니다.");
+    } else {
+      // setSelectedPocketmon에
+      // 기존의 setSelectedPocketmon의 데이터와
+      // pockemon 데이터를 넣음
+      setSelectedPockemon([...selectedPockemon, pockemon]);
+    }
   };
 
-  const removePokemon = (pokemon) => {
-    // 제거는 필터를 이용해 봅시다
-  };
-
+  // 선택된 포켓몬을 props로 전달
   return (
-    <div className="cards-grid">
-      {pockemonData.map(function (cards) {
-        return (
-          <div key={cards.id}>
-            <img src={cards.img_url}></img>
-            <br />
-            {cards.id}
-            <br />
-            {cards.korean_name}
-            <br />
-            {cards.types}
-            <br />
-            {cards.description}
-          </div>
-        );
-      })}
-    </div>
+    <DexContainer>
+      <Dashboard selectedPokemon={selectedPockemon} />
+      {/* 
+      MOCK_DATA를 pockemonList라는 변수를 사용해서
+      props로 넘겨줌*/}
+      <PockemonList pockemonList={MOCK_DATA} addPockemon={addPockemon} />
+    </DexContainer>
   );
-};
-
-export default Dex;
+}
