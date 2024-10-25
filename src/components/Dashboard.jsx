@@ -17,35 +17,11 @@ const Title = styled.h2`
   color: #ff0000;
 `;
 
-const SlotsContainer = styled.div`
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 10px;
-  width: 100%;
-  justify-items: center;
-`;
-
-const EmptySlot = styled.div`
-  width: 100px;
-  height: 100px;
-  background-color: #fff;
-  border: 2px dashed #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-`;
-
-const PockballImage = styled.img`
-  width: 50px;
-  height: 50px;
-`;
-
 const Message = styled.p`
   color: black;
 `;
 
-const Dashboard = ({ selectedPokemon }) => {
+const Dashboard = ({ selectedPokemon, removePockemon }) => {
   return (
     <DashboardContainer>
       <Title>대시보드</Title>
@@ -54,7 +30,11 @@ const Dashboard = ({ selectedPokemon }) => {
       ) : (
         <ul>
           {selectedPokemon.map((pockemon) => (
-            <PockemonCard key={pockemon.id} pockemon={pockemon} />
+            <PockemonCard
+              key={pockemon.id}
+              pockemon={pockemon}
+              handleOnClick={removePockemon}
+            />
           ))}
         </ul>
       )}

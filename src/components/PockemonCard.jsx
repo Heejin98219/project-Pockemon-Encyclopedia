@@ -18,11 +18,11 @@ const Card = styled.div`
   }
 `;
 
-export default function PockemonCard({ pockemon, addPockemon }) {
+export default function PockemonCard({ pockemon, handleOnClick }) {
   return (
     <Card
       onClick={() => {
-        addPockemon(pockemon);
+        handleOnClick(pockemon);
       }}
     >
       <div>{pockemon.id}</div>

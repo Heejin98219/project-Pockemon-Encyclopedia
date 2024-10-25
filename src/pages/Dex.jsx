@@ -19,9 +19,10 @@ export default function Dex() {
   const [selectedPockemon, setSelectedPockemon] = useState([]);
   // selectedPockemon은 위 대시보드
   const addPockemon = (pockemon) => {
-    // selectedPockemon에
-    // pockemon이 포함되어 있다면
-    if (selectedPockemon.includes(pockemon)) {
+    if (selectedPockemon.length >= 6) {
+      // selectedPockemon에
+      // pockemon이 포함되어 있다면
+    } else if (selectedPockemon.includes(pockemon)) {
       alert("이미 선택된 포켓몬입니다.");
     } else {
       // setSelectedPocketmon에
@@ -31,10 +32,21 @@ export default function Dex() {
     }
   };
 
+  // 삭제하기 로직
+  const removePockemon = (pockemon) => {
+    const newPockemonList = selectedPockemon.filter(
+      (p) => p.id !== pockemon.id
+    );
+    setSelectedPockemon(newPockemonList);
+  };
+
   // 선택된 포켓몬을 props로 전달
   return (
     <DexContainer>
-      <Dashboard selectedPokemon={selectedPockemon} />
+      <Dashboard
+        selectedPokemon={selectedPockemon}
+        removePockemon={removePockemon}
+      />
       {/* 
       MOCK_DATA를 pockemonList라는 변수를 사용해서
       props로 넘겨줌*/}

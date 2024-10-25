@@ -21,7 +21,7 @@ const PockemonList = ({ pockemonList, addPockemon }) => {
         <PockemonCard
           key={pockemon.id}
           pockemon={pockemon}
-          addPockemon={addPockemon}
+          handleOnClick={addPockemon}
         />
       ))}
     </ListContainer>
