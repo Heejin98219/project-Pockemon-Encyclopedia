@@ -17,9 +17,8 @@ export default function Dex() {
   // 1. 처음에는 어떤 포켓몬도 선택이 안 될거기 때문
   // 2. 하나씩 누를 때마다 선택할 것이기 때문
   const [selectedPockemon, setSelectedPockemon] = useState([]);
-
+  // selectedPockemon은 위 대시보드
   const addPockemon = (pockemon) => {
-    console.log(pockemon);
     // selectedPockemon에
     // pockemon이 포함되어 있다면
     if (selectedPockemon.includes(pockemon)) {

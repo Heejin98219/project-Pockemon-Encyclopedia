@@ -53,8 +53,8 @@ const Dashboard = ({ selectedPokemon }) => {
         <Message>선택된 포켓몬이 없습니다.</Message>
       ) : (
         <ul>
-          {selectedPokemon.map((pokemon) => (
-            <li key={pokemon.id}>{pokemon.korean_name}</li>
+          {selectedPokemon.map((pockemon) => (
+            <PockemonCard key={pockemon.id} pockemon={pockemon} />
           ))}
         </ul>
       )}
